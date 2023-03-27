@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="_5_GraphAlgorithmTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-26T23:37:18" hostname="LLTWN.local" time="73.173">
+  <properties/>
+  <testcase name="start" classname="_5_GraphAlgorithmTests" time="73.173"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1 (28)?[0m
+?[1;31m
+Start test 2 (29)?[0m
+?[1;31m
+Start test 3 (30)?[0m
+?[1;31m
+Start test 4 (31)?[0m
+?[1;31m
+Start test 5 (32)?[0m
+?[1;31m
+Start test 6 (33)?[0m
+?[1;31m
+Start test 7 (34)?[0m
+?[1;31m
+Start test 8 (35)?[0m
+?[1;31m
+Start test 9 (36)?[0m
+?[1;31m
+Start test 10 (37)?[0m
+?[1;31m
+Start test 11 (38)?[0m
+?[1;31m
+Start test 12 (39)?[0m
+?[1;31m
+Start test 13 (40)?[0m
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

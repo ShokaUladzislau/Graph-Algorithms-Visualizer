@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="Graph-Algorithms-Visualizer-main.Graph-Algorithms_Visualizer-task-build-classes-java.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Graph-Algorithms_Visualizer-task-build-reports-tests.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Graph-Algorithms_Visualizer-task-build-test-results.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Graph-Algorithms_Visualizer-task-build-tmp.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Graph-Algorithms_Visualizer-task.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Christmas_tree.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Improve_your vehicle.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Nested_or_inner.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-New_Inner_class.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Pumpkin_and_candle.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Theory.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.Topics-Inner_classes-Why_do_we_need_inner_classes.main" target="16" />
+      <module name="Graph-Algorithms-Visualizer-main.util.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-classes-java.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-generated-sources-annotationProcessor-java.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-generated-sources-headers-java.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-reports-tests.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-test-results.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task-build-tmp.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Graph-Algorithms_Visualizer-task.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Christmas_tree.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Improve_your vehicle.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Nested_or_inner.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-New_Inner_class.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Pumpkin_and_candle.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Theory.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.Topics-Inner_classes-Why_do_we_need_inner_classes.main" target="16" />
+      <module name="Graph-Algorithms_Visualizer.util.main" target="16" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

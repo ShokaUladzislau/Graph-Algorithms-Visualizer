@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class _4_RemoveVertexEdgeTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class _4_RemoveVertexEdgeTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; _4_RemoveVertexEdgeTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">25.870s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">start</td>
+<td class="success">25.870s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>?[1;31m
+Start test 1 (18)?[0m
+?[1;31m
+Start test 2 (19)?[0m
+?[1;31m
+Start test 3 (20)?[0m
+?[1;31m
+Start test 4 (21)?[0m
+?[1;31m
+Start test 5 (22)?[0m
+?[1;31m
+Start test 6 (23)?[0m
+?[1;31m
+Start test 7 (24)?[0m
+?[1;31m
+Start test 8 (25)?[0m
+?[1;31m
+Start test 9 (26)?[0m
+?[1;31m
+Start test 10 (27)?[0m
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+?[0m?[0;34mException in thread &quot;AWT-EventQueue-0&quot; java.util.ConcurrentModificationException
+?[0m?[0;34m	at java.base/java.util.HashMap$KeySpliterator.forEachRemaining(HashMap.java:1712)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+?[0m?[0;34m	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+?[0m?[0;34m	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+?[0m?[0;34m	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+?[0m?[0;34m	at visualizer.UndirectedGraph.removeVertex(UndirectedGraph.java:164)
+?[0m?[0;34m	at visualizer.Vertex.removeVertex(Vertex.java:119)
+?[0m?[0;34m	at visualizer.Vertex$1.mouseClicked(Vertex.java:64)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6629)
+?[0m?[0;34m	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+?[0m?[0;34m	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+?[0m?[0;34m	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4584)
+?[0m?[0;34m	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+?[0m?[0;34m	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+?[0m?[0;34m	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+?[0m?[0;34m	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+?[0m?[0;34m	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+?[0m?[0;34m	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+?[0m?[0;34m	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+?[0m?[0;34m	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.3.3</a> at Mar 26, 2023, 7:38:32 PM</p>
+</div>
+</div>
+</body>
+</html>

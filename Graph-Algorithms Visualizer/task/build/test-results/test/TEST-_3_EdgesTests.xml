@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="_3_EdgesTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-26T23:36:37" hostname="LLTWN.local" time="15.597">
+  <properties/>
+  <testcase name="start" classname="_3_EdgesTests" time="15.597"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1 (14)?[0m
+?[1;31m
+Start test 2 (15)?[0m
+?[1;31m
+Start test 3 (16)?[0m
+?[1;31m
+Start test 4 (17)?[0m
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

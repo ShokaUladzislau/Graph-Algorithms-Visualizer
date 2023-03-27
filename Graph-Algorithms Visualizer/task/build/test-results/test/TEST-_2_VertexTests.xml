@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="_2_VertexTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-26T23:36:23" hostname="LLTWN.local" time="13.661">
+  <properties/>
+  <testcase name="start" classname="_2_VertexTests" time="13.661"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1 (5)?[0m
+?[1;31m
+Start test 2 (6)?[0m
+?[1;31m
+Start test 3 (7)?[0m
+?[1;31m
+Start test 4 (8)?[0m
+?[1;31m
+Start test 5 (9)?[0m
+?[1;31m
+Start test 6 (10)?[0m
+?[1;31m
+Start test 7 (11)?[0m
+?[1;31m
+Start test 8 (12)?[0m
+?[1;31m
+Start test 9 (13)?[0m
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

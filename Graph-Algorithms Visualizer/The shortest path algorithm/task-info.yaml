@@ -1,0 +1,1476 @@
+type: edu
+files:
+- name: src/visualizer/ApplicationRunner.java
+  visible: true
+  text: |-
+    package visualizer;
+
+    public class ApplicationRunner {
+        public static void main(String[] args) {
+            new MainFrame();
+        }
+    }
+  learner_created: false
+- name: src/visualizer/MainFrame.java
+  visible: true
+  text: |-
+    package visualizer;
+
+    import javax.swing.*;
+
+    public class MainFrame extends JFrame {
+
+        public MainFrame() {
+            super("Graph-Algorithms Visualizer");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(800, 600);
+            setLocationRelativeTo(null);
+            var modeLabel = new ModeLabel();
+            add(modeLabel);
+            var graph = new Graph(modeLabel);
+            add(graph);
+            setJMenuBar(new ModeMenu(graph));
+            setVisible(true);
+        }
+    }
+  learner_created: false
+- name: src/visualizer/Vertex.java
+  visible: true
+  text: |-
+    package visualizer;
+
+    import javax.swing.*;
+    import java.awt.*;
+
+    public class Vertex extends JPanel {
+        protected final String id;
+        protected final JLabel vertexID;
+
+        public Vertex(String id) {
+            this.id = id;
+            setName("Vertex " + id);
+            setBackground(Color.BLACK);
+            setSize(new Dimension(50, 50));
+            this.vertexID = new JLabel(id);
+            vertexID.setName("VertexLabel " + id);
+            vertexID.setFont(new Font("Courier", Font.BOLD, 30));
+            vertexID.setForeground(Color.RED);
+            add(vertexID);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.setColor(Color.WHITE);
+            g.fillOval(0, 0, 49, 49);
+        }
+    }
+  learner_created: false
+- name: test/GraphData.java
+  visible: false
+  text: |
+    import java.util.List;
+
+    public interface GraphData {
+        List<Vertex> getVertices();
+
+        List<Edge> getEdges();
+
+        String getDFSText();
+
+        String getBFSText();
+
+        String getDijkstraText();
+
+        String getSource();
+    }
+  learner_created: false
+- name: test/GraphDataOne.java
+  visible: false
+  text: |
+    import java.awt.*;
+    import java.util.List;
+
+    public class GraphDataOne implements GraphData {
+
+        @Override
+        public List<Vertex> getVertices() {
+            return List.of(
+                    new Vertex("A", new Point(175, 359)),
+                    new Vertex("B", new Point(224, 176)),
+                    new Vertex("C", new Point(365, 363)),
+                    new Vertex("D", new Point(408, 67)),
+                    new Vertex("E", new Point(531, 235)),
+                    new Vertex("F", new Point(590, 64))
+            );
+        }
+
+        @Override
+        public List<Edge> getEdges() {
+            return List.of(
+                    new Edge("A", "B", 1),
+                    new Edge("B", "D", 2),
+                    new Edge("D", "F", 3),
+                    new Edge("F", "E", 4),
+                    new Edge("E", "C", 5),
+                    new Edge("C", "A", 6),
+                    new Edge("B", "E", 7),
+                    new Edge("D", "C", 8),
+                    new Edge("B", "C", 9),
+                    new Edge("D", "E", 10)
+            );
+        }
+
+        @Override
+        public String getDFSText() {
+            return "DFS : A -> B -> D -> F -> E -> C";
+        }
+
+        @Override
+        public String getBFSText() {
+            return "BFS : A -> B -> C -> D -> E -> F";
+        }
+
+        @Override
+        public String getDijkstraText() {
+            return "B=1, C=6, D=3, E=8, F=6";
+        }
+
+        @Override
+        public String getSource() {
+            return "A";
+        }
+    }
+  learner_created: false
+- name: test/GraphDataTwo.java
+  visible: false
+  text: |
+    import java.awt.*;
+    import java.util.List;
+
+    public class GraphDataTwo implements GraphData {
+
+        @Override
+        public List<Vertex> getVertices() {
+            return List.of(
+                    new Vertex("1", new Point(361, 54)),
+                    new Vertex("2", new Point(152, 164)),
+                    new Vertex("3", new Point(599, 155)),
+                    new Vertex("4", new Point(47, 394)),
+                    new Vertex("5", new Point(291, 392)),
+                    new Vertex("6", new Point(419, 390)),
+                    new Vertex("7", new Point(744, 392))
+            );
+        }
+
+        @Override
+        public List<Edge> getEdges() {
+            return List.of(
+                    new Edge("1", "2", 1),
+                    new Edge("1", "3", 3),
+                    new Edge("2", "4", 5),
+                    new Edge("5", "2", 7),
+                    new Edge("6", "3", 9),
+                    new Edge("7", "3", 11)
+            );
+        }
+
+        @Override
+        public String getDFSText() {
+            return "DFS : 1 -> 2 -> 4 -> 5 -> 3 -> 6 -> 7";
+        }
+
+        @Override
+        public String getBFSText() {
+            return "BFS : 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7";
+        }
+
+        @Override
+        public String getDijkstraText() {
+            return "2=1, 3=3, 4=6, 5=8, 6=12, 7=14";
+        }
+
+        @Override
+        public String getSource() {
+            return "1";
+        }
+    }
+  learner_created: false
+- name: test/ShortestPathAlgorithmTests.java
+  visible: false
+  text: |
+    import org.assertj.swing.exception.ComponentLookupException;
+    import org.assertj.swing.exception.WaitTimedOutError;
+    import org.assertj.swing.finder.JOptionPaneFinder;
+    import org.assertj.swing.fixture.JLabelFixture;
+    import org.assertj.swing.fixture.JMenuItemFixture;
+    import org.assertj.swing.fixture.JOptionPaneFixture;
+    import org.assertj.swing.fixture.JPanelFixture;
+    import org.hyperskill.hstest.common.Utils;
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+    import org.hyperskill.hstest.stage.SwingTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.swing.SwingComponent;
+    import visualizer.MainFrame;
+
+    import javax.swing.*;
+    import java.awt.*;
+    import java.util.Objects;
+    import java.util.Optional;
+    import java.util.regex.Pattern;
+
+    import static org.assertj.core.api.Assertions.assertThat;
+    import static org.hyperskill.hstest.testcase.CheckResult.correct;
+
+    class Vertex {
+        private final String id;
+        private final Point point;
+
+        Vertex(String id, Point point) {
+            this.id = id;
+            this.point = point;
+        }
+
+        public static Vertex of(String id) {
+            return new Vertex(id, null);
+        }
+
+        public Point point() {
+            return point;
+        }
+
+        public String id() {
+            return id;
+        }
+
+        public String name() {
+            return "Vertex " + id;
+        }
+
+        public String labelName() {
+            return "VertexLabel " + id;
+        }
+    }
+
+    class Edge {
+        private final String from;
+        private final String to;
+        private final int weight;
+
+        public Edge(String from, String to, int weight) {
+            this.from = from;
+            this.to = to;
+            this.weight = weight;
+        }
+
+        public static Edge of(String from, String to) {
+            return new Edge(from, to, 0);
+        }
+
+        public String from() {
+            return from;
+        }
+
+        public String to() {
+            return to;
+        }
+
+        public int weight() {
+            return weight;
+        }
+
+        public String name() {
+            return "Edge <" + from + " -> " + to + ">";
+        }
+
+        public String labelName() {
+            return "EdgeLabel <" + from + " -> " + to + ">";
+        }
+
+        public Edge opposite() {
+            return new Edge(this.to, this.from, this.weight);
+        }
+    }
+
+    enum ComponentType {
+        VERTEX("Vertex "),
+        EDGE("Edge "),
+        EDGE_LABEL("EdgeLabel "),
+        VERTEX_LABEL("VertexLabel "),
+        ANY("");
+
+        private final String prefix;
+
+        ComponentType(String prefix) {
+            this.prefix = prefix;
+        }
+
+        public String prefix() {
+            return prefix;
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public class ShortestPathAlgorithmTests extends SwingTest {
+
+        @SwingComponent(name = "Graph")
+        private JPanelFixture graph;
+
+        @SwingComponent(name = "Mode")
+        private JLabelFixture modeText;
+
+        @SwingComponent(name = "Add a Vertex")
+        private JMenuItemFixture addAVertexMode;
+
+        @SwingComponent(name = "Add an Edge")
+        private JMenuItemFixture addAnEdgeMode;
+
+        @SwingComponent(name = "Remove a Vertex")
+        private JMenuItemFixture removeAVertexMode;
+
+        @SwingComponent(name = "Remove an Edge")
+        private JMenuItemFixture removeAnEdgeMode;
+
+        @SwingComponent(name = "New")
+        private JMenuItemFixture newMenuItem;
+
+        @SwingComponent(name = "Exit")
+        private JMenuItemFixture exitMenuItem;
+
+        @SwingComponent(name = "None")
+        private JMenuItemFixture noneMode;
+
+        @SwingComponent(name = "Breadth-First Search")
+        private JMenuItemFixture breadthFirstSearch;
+
+        @SwingComponent(name = "Depth-First Search")
+        private JMenuItemFixture depthFirstSearch;
+
+        @SwingComponent(name = "Dijkstra's Algorithm")
+        private JMenuItemFixture dijkstraAlgorithm;
+
+        @SwingComponent(name = "Display")
+        private JLabelFixture display;
+
+        public ShortestPathAlgorithmTests() {
+            super(new MainFrame());
+        }
+
+        @DynamicTest(order = 1, feedback = "Initially graph panel should not contain anything.")
+        CheckResult isEmptyGraph() {
+            assertThat(count(ComponentType.ANY))
+                    .isEqualTo(0);
+
+            return correct();
+        }
+
+        @DynamicTest(order = 2, feedback = "Initial Mode must be \"Add a Vertex\"")
+        CheckResult isCorrectCurrentMode() {
+            modeText.requireText(Pattern.compile(".*add a vertex.*", Pattern.CASE_INSENSITIVE));
+            return correct();
+        }
+
+        void changeModeToAddAVertex() {
+            addAVertexMode.click();
+        }
+
+        void insertVertex(Vertex vertex) {
+
+            getWindow().robot().click(graph.target(), vertex.point());
+
+            JOptionPaneFixture jOptionPaneFixture;
+            try {
+
+                jOptionPaneFixture = JOptionPaneFinder
+                        .findOptionPane()
+                        .withTimeout(200)
+                        .using(getWindow().robot());
+
+            } catch (WaitTimedOutError e) {
+                throw new WrongAnswer("Timeout waiting for a dialog box to open");
+            }
+
+            try {
+
+                jOptionPaneFixture.textBox();
+
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A text box was not found inside the dialog box");
+            }
+
+            try {
+
+                jOptionPaneFixture.okButton();
+
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A ok button was not found inside the dialog box");
+            }
+
+            try {
+
+                jOptionPaneFixture.cancelButton();
+
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A cancel button was not found inside the dialog box");
+            }
+
+            try {
+
+                jOptionPaneFixture.requireTitle(Pattern.compile("vertex", Pattern.CASE_INSENSITIVE));
+
+            } catch (Exception ignore) {
+                throw new WrongAnswer("Dialog box title should contain \"Vertex\"");
+            }
+
+
+            try {
+
+                jOptionPaneFixture
+                        .textBox()
+                        .setText(vertex.id());
+
+                jOptionPaneFixture
+                        .textBox()
+                        .requireText(vertex.id());
+            } catch (Exception e) {
+                throw new WrongAnswer("Cannot write text '" + vertex.id() + "' in dialog box / Incorrect text after writing. Expected: '" + vertex.id() + "'");
+            }
+
+            JOptionPaneFinder
+                    .findOptionPane()
+                    .using(getWindow().robot())
+                    .okButton()
+                    .click();
+
+            try {
+
+                JOptionPaneFinder
+                        .findOptionPane()
+                        .withTimeout(200)
+                        .using(getWindow().robot());
+
+                throw new WrongAnswer("Dialog box did not disappear after clicking ok");
+            } catch (WaitTimedOutError ignored) {
+            }
+
+            Optional<Component> vOp = getVertex(vertex.id());
+
+            if (vOp.isEmpty()) {
+                throw new WrongAnswer(vertex.name() + " was not created. It is not present in graph panel");
+            }
+
+            if (!(vOp.get() instanceof JPanel)) {
+                throw new WrongAnswer("Each Vertex should be represented by a JPanel.");
+            }
+
+            JPanel v = (JPanel) vOp.get();
+
+            if (v.getSize().getHeight() != 50 || v.getSize().getWidth() != 50) {
+                Dimension expected = new Dimension(50, 50);
+                Dimension got = v.getSize();
+                throw new WrongAnswer("Incorrect Vertex Size. Expected: " + expected + ", Got: " + got);
+            }
+
+            Optional<Component> vl = getVertexLabel(vertex.id());
+
+            if (vl.isEmpty()) {
+                throw new WrongAnswer("Label of " + vertex.name() + " is not Present.");
+            }
+
+            if (!(vl.get() instanceof JLabel)) {
+                throw new WrongAnswer("Each Vertex label must be represented by JLabel.");
+            }
+
+            JLabel vLabel = (JLabel) vl.get();
+
+            if (!Objects.equals(vLabel.getParent().getName(), vertex.name())) {
+                throw new WrongAnswer("Each Label of each vertex must be present inside it.");
+            }
+
+            if (!Objects.equals(vLabel.getText(), vertex.id())) {
+                throw new WrongAnswer("Vertex Label Should Contain ID of Vertex");
+            }
+
+            Point got = v.getLocation();
+            Point expected = new Point((int) (vertex.point().getX() - 25), (int) (vertex.point().getY() - 25));
+            if (!expected.equals(got)) {
+                throw new WrongAnswer("Incorrect Position. Expected: " + expected + ", Got: " + got);
+            }
+
+        }
+
+        void changeModeToAddAnEdge() {
+            addAnEdgeMode.click();
+        }
+
+        void insertEdge(Edge edge) {
+
+
+            getWindow().robot().click(getVertex(edge.from()).orElseThrow());
+            getWindow().robot().click(getVertex(edge.to()).orElseThrow());
+
+            JOptionPaneFixture jOptionPaneFixture;
+
+            try {
+                jOptionPaneFixture = JOptionPaneFinder
+                        .findOptionPane()
+                        .withTimeout(1000)
+                        .using(getWindow().robot());
+            } catch (WaitTimedOutError e) {
+                throw new WrongAnswer("Clicking on two vertices in the \"Add an Edge\" mode; a new window must pop up prompting for edge weight");
+            }
+
+            try {
+                jOptionPaneFixture.okButton();
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A ok button was not found in edge weight prompting input box.");
+            }
+
+            try {
+                jOptionPaneFixture.cancelButton();
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A cancel button was not found in edge weight prompting input box.");
+            }
+
+            try {
+                jOptionPaneFixture.textBox();
+            } catch (ComponentLookupException e) {
+                throw new WrongAnswer("A text box was not found in edge weight prompting input box.");
+            }
+
+            try {
+                jOptionPaneFixture
+                        .textBox()
+                        .setText(edge.weight() + "");
+
+                jOptionPaneFixture
+                        .textBox()
+                        .requireText(edge.weight() + "");
+            } catch (Exception e) {
+                throw new WrongAnswer("Could not enter text in the edge weight prompting dialog box.");
+            }
+
+            jOptionPaneFixture
+                    .okButton()
+                    .click();
+
+            try {
+                JOptionPaneFinder
+                        .findOptionPane()
+                        .withTimeout(1000)
+                        .using(getWindow().robot());
+
+                throw new WrongAnswer("Dialog box must close after clicking on ok button.");
+            } catch (WaitTimedOutError ignored) {
+            }
+
+            Component aTob = getEdge(edge.from(), edge.to()).orElseThrow(() -> new WrongAnswer("\"" + edge.labelName() + "\" was not found!"));
+
+            Component bToa = getEdge(edge.to(), edge.from()).orElseThrow(() -> new WrongAnswer("\"" + edge.opposite().labelName() + "\" was not found!"));
+
+            Component label = getEdgeLabel(edge.from(), edge.to()).orElseThrow(() -> new WrongAnswer("Edge Label which should contain the edge weight was not found in graph."));
+
+            if (!(aTob instanceof JComponent) || !(bToa instanceof JComponent))
+                throw new WrongAnswer("Edge must be represented by JComponent");
+
+            if (!(label instanceof JLabel))
+                throw new WrongAnswer("EdgeLabel must be represented by JLabel");
+
+            if (!Objects.equals(graph.target(), label.getParent()))
+                throw new WrongAnswer("Parent of each edge label is the graph itself not the edge.");
+
+
+            try {
+                assertThat(((JLabel) label).getText())
+                        .containsIgnoringCase(edge.weight() + "");
+            } catch (Exception e) {
+                throw new WrongAnswer("Edge Label should hold the weight of the respective edge");
+            }
+
+
+        }
+
+        void checkVertexCount(Vertex[] vertices) {
+            int got = count(ComponentType.VERTEX);
+            int expected = vertices.length;
+            if (expected != got)
+                throw new WrongAnswer("Incorrect Vertex Count. Expected = " + expected + ", Got = " + got);
+
+        }
+
+        void checkEdgeCount(Edge[] edges) {
+            int got = count(ComponentType.EDGE);
+            int expected = edges.length * 2;
+            if (expected != got)
+                throw new WrongAnswer("Incorrect Edge Count. Expected = " + expected + ", Got = " + got);
+
+        }
+
+        void checkVertexLabelCount(Vertex[] vertices) {
+            int got = count(ComponentType.VERTEX_LABEL);
+            int expected = vertices.length;
+            if (expected != got)
+                throw new WrongAnswer("Incorrect Vertex Label (id) Count. Expected = " + expected + ", Got = " + got);
+        }
+
+        void checkEdgeLabelCount(Edge[] edges) {
+            int got = count(ComponentType.EDGE_LABEL);
+            int expected = edges.length;
+            if (expected != got)
+                throw new WrongAnswer("Incorrect Edge Label Count. Expected = " + expected + ", Got = " + got);
+        }
+
+        GraphData[] graphs = new GraphData[]{new GraphDataOne(), new GraphDataTwo()};
+
+        @DynamicTest(order = 3, data = "graphs", feedback = "Error while running / trying to run graph traversal algorithms")
+        CheckResult checkGraphTraversal(GraphData data) {
+
+            Vertex[] vertices = data.getVertices().toArray(new Vertex[0]);
+            Edge[] edges = data.getEdges().toArray(new Edge[0]);
+
+            this.changeModeToAddAVertex();
+
+            for (Vertex v : vertices) {
+                insertVertex(v);
+            }
+
+            this.changeModeToAddAnEdge();
+
+            for (Edge e : edges) {
+                insertEdge(e);
+            }
+
+            checkVertexCount(vertices);
+            checkEdgeCount(edges);
+            checkVertexLabelCount(vertices);
+            checkEdgeLabelCount(edges);
+
+            runAlgorithm(data, dijkstraAlgorithm, data.getDijkstraText());
+
+            newMenuItem.click();
+
+            return correct();
+        }
+
+        private void runAlgorithm(GraphData data, JMenuItemFixture algo, String answer) {
+            algo.click();
+
+            if (!display.text().contains("Please choose a starting vertex"))
+                throw new WrongAnswer("Display label should show \"Please choose a starting vertex\" if an algorithm is selected for execution.");
+
+            getWindow().robot().click(getVertex(data.getSource()).orElseThrow(() -> new WrongAnswer("Vertex disappeared after creation.")));
+
+            if (!modeText.text().matches(".*None.*"))
+                throw new WrongAnswer("Mode after selecting an algorithm should be \"None\".");
+
+            if (!display.text().contains("Please wait..."))
+                throw new WrongAnswer("Display label should show \"Please wait...\" after selecting source / while the algorithm is executing.");
+
+            int totalTime = 0;
+            while (display.text().contains("Please wait...")) {
+                if (totalTime > 60000) {
+                    throw new WrongAnswer("Algorithm Running for more than 1 min");
+                }
+                Utils.sleep(100);
+                totalTime += 100;
+            }
+
+            if (!display.text().contains(answer))
+                throw new WrongAnswer("Wrong Answer in " + algo.target().getName() + "." + " Expected: " + answer + ", Got: " + display.text());
+        }
+
+        private int count(ComponentType type) {
+            return (int) getAllComponents(graph.target())
+                    .stream()
+                    .filter(it -> it.getName() != null && it.getName().startsWith(type.prefix()))
+                    .count();
+        }
+
+        private Optional<Component> getVertexLabel(String id) {
+            String name = Vertex.of(id).labelName();
+
+            return getAllComponents(graph.target())
+                    .stream()
+                    .filter(it -> Objects.equals(it.getName(), name))
+                    .findFirst();
+
+        }
+
+        private Optional<Component> getEdgeLabel(String from, String to) {
+            String name = Edge.of(from, to).labelName();
+
+            return getAllComponents(graph.target())
+                    .stream()
+                    .filter(it -> Objects.equals(it.getName(), name))
+                    .findFirst();
+
+        }
+
+        private Optional<Component> getEdge(String from, String to) {
+            String name = Edge.of(from, to).name();
+
+            return getAllComponents(graph.target())
+                    .stream()
+                    .filter(it -> Objects.equals(it.getName(), name))
+                    .findFirst();
+        }
+
+        private Optional<Component> getVertex(String id) {
+            String name = Vertex.of(id).name();
+
+            return getAllComponents(graph.target())
+                    .stream()
+                    .filter(it -> Objects.equals(name, it.getName()))
+                    .findFirst();
+        }
+    }
+  learner_created: false
+- name: src/visualizer/PrimAlgorithm.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import java.util.*;
+
+    public class PrimAlgorithm extends Algorithm {
+        Set<Vertex> mstSelected;
+        Map<Vertex, Integer> verticesWeight; // in mst tree
+        Map<Character, Character> childParents;   // by id
+
+        PrimAlgorithm(Vertex startPoint) {
+            super.startPoint = startPoint;
+        }
+
+        @Override
+        String search() {
+            mstSelected = new HashSet<>();
+            verticesWeight = new HashMap<>();
+            childParents = new TreeMap<>();
+
+            for (var vertex : startPoint.getMainFrame().getGraph().getVertices()) {
+                verticesWeight.put(vertex, Integer.MAX_VALUE);
+            }
+
+            verticesWeight.put(startPoint, 0);
+            mstSelected.add(startPoint);
+
+            buildMST(startPoint);
+
+            StringBuilder ret = new StringBuilder();
+            childParents.forEach((c, p) -> ret.append(c).append("=").append(p).append(", "));
+            return ret.deleteCharAt(ret.length() - 2).toString().trim();
+        }
+
+        void buildMST(Vertex vertex) {
+            if (vertex.getConnectedVertices().isEmpty()) {
+                return;
+            }
+
+            var connected = new LinkedHashMap<Vertex, Integer>();
+            for (var entry : vertex.getConnectedVertices().entrySet()) {
+                connected.put(entry.getValue(), entry.getKey());
+            }
+
+            for (var entry : connected.entrySet()) {
+                if (entry.getKey() != startPoint && entry.getValue() < verticesWeight.get(entry.getKey())) {
+                    verticesWeight.put(entry.getKey(), entry.getValue());
+                    childParents.put(entry.getKey().getId(), vertex.getId());
+                }
+            }
+
+            var optVertex = verticesWeight.keySet().stream()
+                    .filter(k -> !mstSelected.contains(k))
+                    .min((k1, k2) -> Integer.compare(verticesWeight.get(k1), verticesWeight.get(k2)));
+
+            Vertex toSelect = null;
+            if (optVertex.isPresent()) {
+                toSelect = optVertex.get();
+            }
+
+            if (toSelect != null) {
+                mstSelected.add(toSelect);
+                buildMST(toSelect);
+            }
+        }
+    }
+  learner_created: true
+- name: src/visualizer/SearchStrategy.java
+  visible: true
+  text: |
+    package visualizer;
+
+    public class SearchStrategy {
+        static Algorithm strategy;
+
+        public static void setStrategy(Algorithm strategy) {
+            SearchStrategy.strategy = strategy;
+        }
+
+        static String search() {
+            return strategy.search();
+        }
+    }
+  learner_created: true
+- name: src/visualizer/DepthFirstSearch.java
+  visible: true
+  text: |-
+    package visualizer;
+
+    import java.util.HashSet;
+    import java.util.Set;
+
+    public class DepthFirstSearch extends Algorithm {
+
+        private Set<Vertex> searched;
+        private StringBuilder ret;
+
+        public DepthFirstSearch(Vertex startPoint) {
+            super.startPoint = startPoint;
+        }
+
+        @Override
+        String search() {
+            ret = new StringBuilder();
+            searched = new HashSet<>();
+            ret.append(" ").append(startPoint.getId()).append(" ");
+            searched.add(startPoint);
+            dfSearch(startPoint);
+            return "DFS : " + ret.toString().trim().replaceAll("\\s+", " -> ");
+        }
+
+        void dfSearch(Vertex vertex) {
+            if (!searched.contains(vertex) && vertex.getConnectedVertices().isEmpty()) {
+                searched.add(vertex);
+                ret.append(" ").append(vertex.getId()).append(" ");
+            }
+
+
+            for (var vert : vertex.getConnectedVertices().values()) {
+                if (!searched.contains(vert)) {
+                    searched.add(vert);
+                    ret.append(" ").append(vert.getId()).append(" ");
+                    dfSearch(vert);
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/visualizer/UndirectedGraph.java
+  visible: true
+  text: |-
+    package visualizer;
+
+    import javax.swing.*;
+    import java.awt.*;
+    import java.awt.event.MouseAdapter;
+    import java.awt.event.MouseEvent;
+    import java.util.HashSet;
+    import java.util.Set;
+
+    public class UndirectedGraph extends JPanel {
+        private final Set<Vertex> vertices = new HashSet<>();
+        private final Set<UndirectedEdge> edges = new HashSet<>();
+
+        private final Set<JLabel> weightLabels = new HashSet<>();
+
+        final MainFrame mainFrame;
+
+        public UndirectedGraph(MainFrame mainFrame, LayoutManager layout, String name) {
+            this.mainFrame = mainFrame;
+            setLayout(layout);
+            setName(name);
+            setForeground(Color.RED);
+            setBackground(Color.BLACK);
+            setBounds(0, 0, 800, 600);
+
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    switch (mainFrame.getMode()) {
+                        case ADD_VERTEX -> createVertex(e);
+                        case ADD_EDGE -> {
+                            // To Do
+                        }
+                        case NONE_MODE -> whiteVertices();
+                    }
+                }
+            });
+        }
+
+        protected void paintChildren(Graphics g) {
+
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setStroke(new BasicStroke(6));
+            g2.setColor(Color.WHITE);
+            for (var edge : edges) {
+                drawEdge(g2, edge);
+            }
+
+            super.paintChildren(g);
+        }
+
+        private void setupLabelPosition(UndirectedEdge edge) {
+            var nodes = edge.getNodes();
+            int x1 = nodes[0].getCenterX();
+            int y1 = nodes[0].getCenterY();
+            int x2 = nodes[1].getCenterX();
+            int y2 = nodes[1].getCenterY();
+
+            int centerX = Math.min(x1, x2) + Math.abs(x1 - x2) / 2;
+            int centerY = Math.min(y1, y2) + Math.abs(y1 - y2) / 2;
+
+            int dist = 25;
+            int distSqr = dist * dist;
+            if (x1 - x2 != 0) {
+                float slope = (float) (y1 - y2) / (x2 - x1);
+                double slopeSqr = slope * slope;
+                double diffX = Math.sqrt(distSqr / (1 + slopeSqr));
+                double diffY = Math.sqrt(distSqr - distSqr / (1 + slopeSqr));
+
+                centerX = (int) (centerX + diffX);
+                centerY = (int) (centerY + diffY);
+            }
+            edge.getWeightLabel().setBounds(centerX, centerY, 30, 30);
+        }
+
+        private void createVertex(MouseEvent e) {
+            whiteVertices();
+            Vertex vertex = VertexCreator.createVertex(mainFrame, e.getX(), e.getY());
+            if (vertex != null) {
+                add(vertex);
+                vertices.add(vertex);
+                paintComponents(getGraphics());
+                mainFrame.repaint();
+            }
+        }
+
+        void whiteVertices() {
+            vertices.forEach(Vertex::resetColor);
+            mainFrame.repaint();
+        }
+
+        private void drawEdge(Graphics2D g2, UndirectedEdge edge) {
+            var nodes = edge.getNodes();
+            int x1 = nodes[0].getCenterX();
+            int y1 = nodes[0].getCenterY();
+            int x2 = nodes[1].getCenterX();
+            int y2 = nodes[1].getCenterY();
+
+            g2.drawLine(x1, y1, x2, y2);
+        }
+
+        void addNewEdge(UndirectedEdge newEdge, UndirectedEdge stupidStageLogic) {
+            if (!isDuplicateEdge(newEdge)) {
+                edges.add(newEdge);
+                add(newEdge);
+
+
+                int x1 = newEdge.getNodes()[0].getCenterX();
+                int y1 = newEdge.getNodes()[0].getCenterY();
+                int x2 = newEdge.getNodes()[1].getCenterX();
+                int y2 = newEdge.getNodes()[1].getCenterY();
+                int centerX = Math.min(x1, x2) + Math.abs(x1 - x2) / 2;
+                int centerY = Math.min(y1, y2) + Math.abs(y1 - y2) / 2;
+                newEdge.setBounds(centerX - 3, centerY - 3, 50, 50);
+                stupidStageLogic.setBounds(centerX, centerY, 50, 50);
+
+                edges.add(stupidStageLogic);
+                add(stupidStageLogic);
+
+                setupLabelPosition(newEdge);
+                weightLabels.add(newEdge.getWeightLabel());
+                add(newEdge.getWeightLabel());
+
+                whiteVertices();
+
+                mainFrame.repaint();
+            }
+        }
+
+        void removeEdge(UndirectedEdge edge) {
+            var optEdge = edges
+                    .stream()
+                    .filter(it -> it.getNodes()[0] == edge.getNodes()[1] && it.getNodes()[1] == edge.getNodes()[0])
+                    .findFirst();
+
+            UndirectedEdge oppositeEdge = null;
+            if (optEdge.isPresent()) {
+                oppositeEdge = optEdge.get();
+            }
+
+            remove(edge);
+            edges.remove(edge);
+            remove(oppositeEdge);
+            edges.remove(oppositeEdge);
+
+            remove(edge.getWeightLabel());
+            weightLabels.remove(edge.getWeightLabel());
+
+            if (oppositeEdge != null) {
+                remove(oppositeEdge.getWeightLabel());
+                weightLabels.remove(oppositeEdge.getWeightLabel());
+            }
+
+            edge.getNodes()[0].disconnectVertex(edge.getNodes()[1]);
+            edge.getNodes()[1].disconnectVertex(edge.getNodes()[0]);
+
+            mainFrame.repaint();
+        }
+
+        void removeVertex(Vertex vertex) {
+            remove(vertex);
+            vertices.remove(vertex);
+            edges.stream().filter(e -> e.getNodes()[0] == vertex || e.getNodes()[1] == vertex).forEach(this::removeEdge);
+            edges.removeIf(e -> e.getNodes()[0] == vertex || e.getNodes()[1] == vertex);
+            mainFrame.repaint();
+        }
+
+        void reset() {
+            for (var vertex : vertices) {
+                remove(vertex);
+            }
+            vertices.clear();
+
+            for (var edge : edges) {
+                remove(edge);
+            }
+            edges.clear();
+
+            for (var label : weightLabels) {
+                remove(label);
+            }
+            weightLabels.clear();
+
+            mainFrame.setMode(Mode.ADD_VERTEX);
+
+            mainFrame.repaint();
+        }
+
+
+        private boolean isDuplicateEdge(UndirectedEdge newEdge) {
+            return edges.stream()
+                    .anyMatch(e -> e.getNodes()[0] == newEdge.getNodes()[0] && e.getNodes()[1] == newEdge.getNodes()[1]);
+        }
+
+        // getters
+        Set<UndirectedEdge> getEdges() {
+            return edges;
+        }
+
+        public Set<JLabel> getWeightLabels() {
+            return weightLabels;
+        }
+
+        public Set<Vertex> getVertices() {
+            return vertices;
+        }
+    }
+  learner_created: true
+- name: src/visualizer/DefaultMenuBar.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import javax.swing.*;
+    import java.awt.event.KeyEvent;
+
+    public class DefaultMenuBar extends JMenuBar {
+        private final MainFrame mainFrame;
+        private final JMenu fileMenu = new JMenu("File");
+        private final JMenu modeMenu = new JMenu("Mode");
+        private final JMenu algorithmsMenu = new JMenu("Algorithms");
+        private final JMenuItem addVertex = new JMenuItem(Mode.ADD_VERTEX.getName());
+        private final JMenuItem addEdge = new JMenuItem(Mode.ADD_EDGE.getName());
+        private final JMenuItem removeVertex = new JMenuItem(Mode.REMOVE_VERTEX.getName());
+        private final JMenuItem removeEdge = new JMenuItem(Mode.REMOVE_EDGE.getName());
+        private final JMenuItem newMenuItem = new JMenuItem("New");
+        private final JMenuItem noneModeMenuItem = new JMenuItem(Mode.NONE_MODE.getName());
+        private final JMenuItem dfsMenuItem = new JMenuItem("Depth-First Search");
+        private final JMenuItem bfsMenuItem = new JMenuItem("Breadth-First Search");
+        private final JMenuItem dijkstraAlgorithmMenuItem = new JMenuItem("Dijkstra's Algorithm");
+
+        private final JMenuItem primAlgorithmMenuItem = new JMenuItem("Prim's Algorithm");
+        private final JMenuItem exitMenuItem = new JMenuItem("Exit");
+
+        DefaultMenuBar(MainFrame mainFrame) {
+            mainFrame.setJMenuBar(this);
+            this.mainFrame = mainFrame;
+            initComponents();
+        }
+
+        void initComponents() {
+            fileMenu.setName("File");
+            add(fileMenu);
+
+            newMenuItem.setName("New");
+            newMenuItem.addActionListener(e -> mainFrame.getGraph().reset());
+
+            exitMenuItem.setName("Exit");
+            exitMenuItem.addActionListener(e -> {
+                mainFrame.dispose();
+                System.exit(0);
+            });
+
+            fileMenu.add(newMenuItem);
+            fileMenu.addSeparator();
+            fileMenu.add(exitMenuItem);
+
+            modeMenu.setName("Mode");
+            modeMenu.setMnemonic(KeyEvent.VK_Q);
+            add(modeMenu);
+
+
+            addVertex.setName("Add a Vertex");
+            addEdge.setName("Add an Edge");
+            removeVertex.setName("Remove a Vertex");
+            removeEdge.setName("Remove an Edge");
+            noneModeMenuItem.setName("None");
+
+            addVertex.addActionListener(e -> mainFrame.setMode(Mode.ADD_VERTEX));
+            addEdge.addActionListener(e -> mainFrame.setMode(Mode.ADD_EDGE));
+            removeVertex.addActionListener(e -> mainFrame.setMode(Mode.REMOVE_VERTEX));
+            removeEdge.addActionListener(e -> mainFrame.setMode(Mode.REMOVE_EDGE));
+            noneModeMenuItem.addActionListener(e -> mainFrame.setMode(Mode.NONE_MODE));
+
+            modeMenu.add(addVertex);
+            modeMenu.add(addEdge);
+            modeMenu.add(removeVertex);
+            modeMenu.add(removeEdge);
+            modeMenu.add(noneModeMenuItem);
+
+            algorithmsMenu.setName("Algorithms");
+            dfsMenuItem.setName("Depth-First Search");
+            bfsMenuItem.setName("Breadth-First Search");
+            dijkstraAlgorithmMenuItem.setName("Dijkstra's Algorithm");
+            primAlgorithmMenuItem.setName("Prim's Algorithm");
+
+            dfsMenuItem.addActionListener(e -> mainFrame.setMode(Mode.DFS_ALGORITHM));
+            bfsMenuItem.addActionListener(e -> mainFrame.setMode(Mode.BFS_ALGORITHM));
+            dijkstraAlgorithmMenuItem.addActionListener(e -> mainFrame.setMode(Mode.DIJKSTRA_ALGORITHM));
+            primAlgorithmMenuItem.addActionListener(e -> mainFrame.setMode(Mode.PRIM_ALGORITHM));
+
+            algorithmsMenu.add(dfsMenuItem);
+            algorithmsMenu.add(bfsMenuItem);
+            algorithmsMenu.add(dijkstraAlgorithmMenuItem);
+            algorithmsMenu.add(primAlgorithmMenuItem);
+
+            add(algorithmsMenu);
+        }
+    }
+  learner_created: true
+- name: src/visualizer/Algorithm.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+
+    public abstract class Algorithm {
+        Vertex startPoint;
+
+        abstract String search();
+    }
+  learner_created: true
+- name: src/visualizer/BreadthFirstSearch.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import java.util.*;
+
+    public class BreadthFirstSearch extends Algorithm {
+        private Set<Vertex> searched;
+        private StringBuilder ret;
+
+        private Deque<Vertex> toSearch;
+
+        public BreadthFirstSearch(Vertex startPoint) {
+            super.startPoint = startPoint;
+        }
+
+        @Override
+        String search() {
+            ret = new StringBuilder();
+            searched = new HashSet<>();
+            toSearch = new LinkedList<>();
+            searched.add(startPoint);
+            ret.append(" ").append(startPoint.getId()).append(" ");
+            bfSearch(startPoint);
+            return "BFS : " + ret.toString().trim().replaceAll("\\s+", " -> ");
+        }
+
+        void bfSearch(Vertex vertex) {
+            for (var vert : vertex.getConnectedVertices().values()) {
+                if (!searched.contains(vert)) {
+                    toSearch.addLast(vert);
+                }
+            }
+            doSearch();
+        }
+
+        void doSearch() {
+            while (!toSearch.isEmpty()) {
+                var vertex = toSearch.pollFirst();
+                if (!searched.contains(vertex)) {
+                    ret.append(" ").append(vertex.getId()).append(" ");
+                    searched.add(vertex);
+                    bfSearch(vertex);
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/visualizer/UndirectedEdge.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import javax.swing.*;
+    import java.awt.*;
+    import java.awt.event.MouseAdapter;
+    import java.awt.event.MouseEvent;
+
+    public class UndirectedEdge extends JComponent {
+        private final Vertex[] nodes = new Vertex[2];
+        private final int weight;
+        private final JLabel weightLabel = new JLabel();
+        private final UndirectedGraph graph;
+
+        public UndirectedEdge(Vertex fstNode, Vertex sndNode, int weight, UndirectedGraph graph) {
+            this.graph = graph;
+            nodes[0] = fstNode;
+            nodes[1] = sndNode;
+            this.weight = weight;
+
+            fstNode.connectVertex(sndNode, weight);
+
+            setName(String.format("Edge <%c -> %c>", fstNode.getId(), sndNode.getId()));
+
+            weightLabel.setFont(new Font("Arial", Font.BOLD, 20));
+            weightLabel.setForeground(Color.RED);
+            weightLabel.setText(String.valueOf(weight));
+            weightLabel.setName(String.format("EdgeLabel <%c -> %c>", fstNode.getId(), sndNode.getId()));
+
+            setBackground(Color.WHITE);
+            addEventListeners();
+        }
+
+        void addEventListeners() {
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    if (graph.mainFrame.getMode() == Mode.REMOVE_EDGE) {
+                        graph.removeEdge(UndirectedEdge.this);
+                    }
+                }
+            });
+        }
+
+        // getters
+
+        Vertex[] getNodes() {
+            return nodes;
+        }
+
+        int getWeight() {
+            return weight;
+        }
+
+        JLabel getWeightLabel() {
+            return weightLabel;
+        }
+    }
+  learner_created: true
+- name: src/visualizer/UndirectedEdgeCreator.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import javax.swing.*;
+
+    public class UndirectedEdgeCreator {
+        private static Vertex fstNode = null;
+        private static final String MESSAGE = "Enter Weight";
+        private static final String TITLE = "Input";
+
+        private UndirectedEdgeCreator() {
+        }
+
+        static void createUndirectedEdge(Vertex vertex) {
+            if (fstNode == null) {
+                fstNode = vertex;
+            } else if (fstNode != vertex) {
+                Integer weight = getWeight(vertex.getMainFrame().getGraph());
+                if (weight == null) {
+                    fstNode.getMainFrame().getGraph().whiteVertices();
+                    fstNode = null;
+                    return;
+                }
+                var undirectedEdges = vertex.getMainFrame().getGraph().getEdges();
+                if (!isDuplicateEdge(undirectedEdges, vertex)) {
+
+                    vertex.getMainFrame().getGraph()
+                            .addNewEdge(new UndirectedEdge(fstNode, vertex, weight, vertex.getMainFrame().getGraph()),
+                                    new UndirectedEdge(vertex, fstNode, weight, vertex.getMainFrame().getGraph()));
+                    fstNode = null;
+                }
+            }
+        }
+
+        private static Integer getWeight(UndirectedGraph graph) {
+            String input = JOptionPane.showInputDialog(graph, MESSAGE, TITLE, JOptionPane.QUESTION_MESSAGE);
+            if (input == null) {
+                return null;
+            }
+            if (isValidWeight(input)) {
+                return Integer.parseInt(input);
+            }
+            return getWeight(graph);
+        }
+
+
+        private static boolean isValidWeight(String input) {
+            try {
+                Integer.parseInt(input);
+                return true;
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        }
+
+        private static boolean isDuplicateEdge(java.util.Set<UndirectedEdge> edges, Vertex sndNode) {
+            return edges.stream()
+                    .anyMatch(edge -> edge.getNodes()[0] == fstNode && edge.getNodes()[1] == sndNode);
+        }
+
+        public static void reset() {
+            fstNode = null;
+        }
+    }
+  learner_created: true
+- name: src/visualizer/DijkstraAlgorithm.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import java.util.HashSet;
+    import java.util.LinkedHashMap;
+    import java.util.Map;
+    import java.util.Set;
+
+    public class DijkstraAlgorithm extends Algorithm {
+
+        private Map<Vertex, Integer> weights;
+
+        public DijkstraAlgorithm(Vertex startPoint) {
+            super.startPoint = startPoint;
+        }
+
+        @Override
+        String search() {
+            weights = new LinkedHashMap<>();
+            weights.put(startPoint, 0);
+
+            findShortestPath(startPoint, Set.of(startPoint));
+
+            weights.remove(startPoint);
+
+            StringBuilder ret = new StringBuilder();
+            weights.forEach((k, v) -> ret.append(k.getId()).append("=").append(v).append(", "));
+            return ret.deleteCharAt(ret.length() - 2).toString().trim();
+        }
+
+        void findShortestPath(Vertex vertex, Set<Vertex> parents) {
+            var tmpMap = new LinkedHashMap<Vertex, Integer>();
+            for (var entry : vertex.getConnectedVertices().entrySet()) {
+                tmpMap.put(entry.getValue(), entry.getKey());
+            }
+            for (var entry : tmpMap.entrySet()) {
+                if (entry.getKey() != startPoint && entry.getKey() != vertex && !parents.contains(entry.getKey())) {
+                    int vertWeight = weights.get(vertex) + entry.getValue();
+                    weights.put(entry.getKey(), Math.min(vertWeight, weights.getOrDefault(entry.getKey(), Integer.MAX_VALUE)));
+                }
+            }
+
+            for (var entry : tmpMap.entrySet()) {
+                if (entry.getKey() != startPoint && entry.getKey() != vertex && !parents.contains(entry.getKey())) {
+                    var tmpSet = new HashSet<>(parents);
+                    tmpSet.add(vertex);
+                    findShortestPath(entry.getKey(), tmpSet);
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/visualizer/Mode.java
+  visible: true
+  text: |
+    package visualizer;
+
+    public enum Mode {
+        ADD_VERTEX("Add a Vertex"),
+        ADD_EDGE("Add an Edge"),
+        REMOVE_VERTEX("Remove a Vertex"),
+        REMOVE_EDGE("Remove an Edge"),
+        NONE_MODE("None"),
+        DFS_ALGORITHM("Depth-First Search"),
+        BFS_ALGORITHM("Breadth-First Search"),
+        DIJKSTRA_ALGORITHM("Dijkstra's Algorithm"),
+        PRIM_ALGORITHM("Prim's Algorithm");
+
+        private final String name;
+
+        Mode(String mode) {
+            this.name = mode;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+  learner_created: true
+- name: src/visualizer/VertexCreator.java
+  visible: true
+  text: |
+    package visualizer;
+
+    import javax.swing.*;
+
+    public class VertexCreator {
+        private static final String MESSAGE = "Enter the Vertex Id (should be 1 char";
+        private static final String TITLE = "Vertex";
+
+        private VertexCreator() {
+        }
+
+
+        static Vertex createVertex(MainFrame mainFrame, int x, int y) {
+            String input = JOptionPane.showInputDialog(mainFrame, MESSAGE, TITLE, JOptionPane.QUESTION_MESSAGE);
+            if (input == null) {
+                return null;
+            }
+            if (isValidId(input)) {
+                return new Vertex(mainFrame, x, y, input.charAt(0));
+            }
+            return createVertex(mainFrame, x, y);
+        }
+
+
+        private static boolean isValidId(String input) {
+            if (input.length() == 1) {
+                return input.matches("[A-Za-z\\d]");
+            }
+            return false;
+        }
+    }
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/15629#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 09 Jan 2023 18:15:58 UTC"
+record: 6
